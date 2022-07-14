@@ -1,32 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>list of students</title>
-</head>
-<body>
-<h1>
-    List of Students
-</h1>
-<table>
-    <thead>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Is Olymphic</th>
-        <th>Year of Birth</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for student in students %}
-            <tr>
-                <td>{{ student.first_name }}</td>
-                <td>{{ student.last_name }}</td>
-                <td>{{ student.is_omympic }}</td>
-                <td>{{ student.year_of_birth }}</td>
+{% extends 'base.html' %}
+{% block title %} List of students {% endblock %}
+{% block content %}
+    <div class="container"><br><br>
+        <h1 class="text-center">
+            List of Students
+        </h1>
+    </div>
+    <div class="container-fluid">
+        <table class="table table-warning">
+            <thead>
+            <tr class="table-info">
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Is Olympic</th>
+                <th scope="col">Year of Birth</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
-</body>
-</html>
+            </thead>
+            <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{% if student.is_olympic is True %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                    </td>
+                    <td>{{ student.year_of_birth }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'books' %}" class="btn btn-primary ">List of books</a>
+    </div>
+{% endblock %}

@@ -28,14 +28,14 @@ def all_students(request):
             {
                 'first_name': 'Ionel',
                 'last_name': 'Leuca',
-                'is_olympic': False,
-                'year_of_birth': 1988,
+                'is_olympic': True,
+                'year_of_birth': 1990,
             },
             {
-                'first_name': 'Catalina',
-                'last_name': 'Corb',
+                'first_name': 'Simona',
+                'last_name': 'Leuca',
                 'is_olympic': False,
-                'year_of_birth': 2001,
+                'year_of_birth': 1988,
             },
             {
                 'first_name': 'Paula',
@@ -47,3 +47,29 @@ def all_students(request):
         ]
     }
     return render(request, 'intro/list_of_students.html', context)
+
+
+def all_books(request):
+    context = {
+        "books": [
+            {
+                "first_name": "Jules",
+                "last_name": "Verne",
+                "title": "Insula Misterioasa",
+                "is_read": True,
+            },
+            {
+                "first_name": "Jules",
+                "last_name": "Verne",
+                "title": "O mie de leghe sub mari",
+                "is_read": True
+            },
+            {
+                "first_name": "Jules",
+                "last_name": "Verne",
+                "title": "Journey to the moon",
+                "is_read": True
+            }
+        ]
+    }
+    return render(request, "intro/list_of_books.html", context)
