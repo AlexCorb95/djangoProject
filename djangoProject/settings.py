@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'intro',
     'home',
     'student',
+    'trainer',
 ]
 
 MIDDLEWARE = [

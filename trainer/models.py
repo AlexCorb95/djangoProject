@@ -1,19 +1,14 @@
 from django.db import models
 
-from trainer.models import Trainer
 
-
-class Student(models.Model):
+class Trainer(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    age = models.IntegerField()
-    is_olympic = models.BooleanField(default=False)
-    address = models.CharField(max_length=150)
-    email = models.EmailField(max_length=50)
+    department = models.CharField(max_length=30)
+    course = models.CharField(max_length=30)
     description = models.TextField(max_length=300)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE, null=True)
 
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
