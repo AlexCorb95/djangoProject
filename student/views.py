@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView
 
 from student.forms import StudentForm
 from student.models import Student
@@ -16,3 +16,13 @@ class StudentListView(ListView):
     template_name = 'student/list_of_students.html'
     model = Student
     context_object_name = 'all_students'
+
+class StudentUpdateView(UpdateView):
+    template_name = 'student/update_student.html'
+    model = Student
+    form_class = StudentForm
+    success_url = reverse_lazy('list-of-students')
+
+class StudentDetaileView(DetailView):
+    template_name = 'student/detail_student.html'
+    model = Student

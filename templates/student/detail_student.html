@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ student }}{% endblock %}
+{% block content %}
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">{{ student }}</h5>
+            <h6 class="card-header"> Age {{ student.age }}<br>
+            started {{ student.trainer.course }} on {{ student.start_date }}</h6>
+            <p class="card-text">Description:<br>
+                {{ student.description }}</p>
+            <a href="{% url 'list-of-students' %}" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+{% endblock %}

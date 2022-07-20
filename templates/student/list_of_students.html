@@ -14,6 +14,7 @@
                         <th>Olympic</th>
                         <th>Name of Trainer</th>
                         <th>Course</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -32,17 +33,21 @@
                             </td>
                             <td>
                                 {% if student.trainer %}
-                                {{ student.trainer }}
+                                    {{ student.trainer }}
                                 {% else %}
-                                No Trainer
+                                    No Trainer
                                 {% endif %}
                             </td>
                             <td>
-                                {% if student.trainer.course%}
-                                {{ student.trainer.course }}
+                                {% if student.trainer.course %}
+                                    {{ student.trainer.course }}
                                 {% else %}
-                                No Course
+                                    No Course
                                 {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'update-student' student.id %}" class="btn text-dark btn-warning btn-outline-light">Update</a>
+                                <a href="{% url 'detail-student' student.id %}" class="btn text-dark btn-info btn-outline-light">Details</a>
                             </td>
                         </tr>
                     {% endfor %}
