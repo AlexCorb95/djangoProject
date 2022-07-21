@@ -46,8 +46,54 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="{% url 'update-student' student.id %}" class="btn text-dark btn-warning btn-outline-light">Update</a>
-                                <a href="{% url 'detail-student' student.id %}" class="btn text-dark btn-info btn-outline-light">Details</a>
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item"
+                                               href="{% url 'update-student' student.id %}">Update</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'detail-student' student.id %}">Details</a>
+                                        </li>
+                                        <li><a class="dropdown-item"
+                                               href="{% url 'delete-student' student.id %}">Delete</a></li>
+
+                                        <li>
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#student_{{ student.id }}">
+                                                Delete modal
+                                            </button>
+                                        </li>
+                                        {% if student.active is True %}
+                                            <li><a href="{% url 'inactive-student' student.id %}" class="dropdown-item">Inactive</a></li>
+                                        {% elif student.active is False %}
+                                            <li><a href="{% url 'active-student' student.id %}" class="dropdown-item">Active</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                                                        <div class="modal fade" id="student_{{ student.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete {{ student }}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                No
+                                            </button>
+                                            <a href="{% url 'delete-student-modal' student.id %}" class="btn btn-danger">Yes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </td>
                         </tr>
                     {% endfor %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Delete {{ trainer }} {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="card text-center col-md-6 offset-md-3">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <h3>Are you sure you want to delete this trainer {{ trainer }}?</h3>
+                    <button type="submit" class="btn btn-warning">Yes</button>
+                    <a class="btn btn-secondary" href="{% url 'list-of-students' %}">No</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

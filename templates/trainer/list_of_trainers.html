@@ -15,14 +15,45 @@
                             <p class="card-text">{{ trainer.description }}</p>
                             <p class="card-text">Started on {{ trainer.start_date }}</p>
                             <div class="dropdown">
-                                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'update-trainer' trainer.id %}">Update</a>
+                                        <a class="dropdown-item"
+                                           href="{% url 'detail-trainer' trainer.id %}">Details</a>
+                                        <a class="dropdown-item" href="{% url 'delete-trainer' trainer.id %}">Delete</a>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#trainer_{{ trainer.id }}">
+                                            Delete modal
+                                        </button>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="trainer_{{ trainer.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete {{ trainer }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    No
+                                </button>
+                                <a href="{% url 'delete-trainer-modal' trainer.id %}" class="btn btn-danger">Yes</a>
                             </div>
                         </div>
                     </div>

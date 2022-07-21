@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ trainer }}{% endblock %}
+{% block content %}
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">{{ trainer }}</h5>
+            <div class="card-header">
+                <h6> Age {{ trainer }}</h6>
+                <p>{{ trainer.course }} trainer </p>
+                <p>started on {{ trainer.start_date }}</p>
+            </div>
+            <p class="card-text">Description:<br>
+                {{ trainer.description }}</p>
+            <a href="{% url 'list-of-trainers' %}" class="btn btn-primary">Back</a>
+
+        </div>
+    </div>
+{% endblock %}
