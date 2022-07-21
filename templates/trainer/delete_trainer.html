@@ -8,7 +8,7 @@
                     {% csrf_token %}
                     <h3>Are you sure you want to delete this trainer {{ trainer }}?</h3>
                     <button type="submit" class="btn btn-warning">Yes</button>
-                    <a class="btn btn-secondary" href="{% url 'list-of-students' %}">No</a>
+                    <a class="btn btn-secondary" href="{% url 'list-of-trainers' %}">No</a>
                 </form>
             </div>
         </div>
