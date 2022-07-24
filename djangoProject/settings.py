@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'home',
     'student',
     'trainer',
+    'book',
 ]
 
 MIDDLEWARE = [

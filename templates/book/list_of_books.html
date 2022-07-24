@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %} List of Books {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <table class="table">
+                    <thead class="card-header">
+                    <tr>
+                        <th>Book Name</th>
+                        <th>Book Type</th>
+                        <th>Author</th>
+                        <th>Year</th>
+                        <th>Rating</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in all_books %}
+                        <tr>
+                            <td>{{ book.book_name }}</td>
+                            <td>{{ book.book_type }}</td>
+                            <td>{{ book.author_first_name }}{{ book.author_last_name }}</td>
+                            <td>{{ book.book_year }}</td>
+                            <td>{{ book.book_rating }}</td>
+                            <td>{{ book.book_quantity }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item"
+                                               href="{% url 'update-book' book.id %}">Update</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'detail-book' book.id %}">Details</a>
+                                        </li>
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#book_{{ book.id }}">
+                                                Delete modal
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="modal fade" id="book_{{ book.id }}" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete {{ book.book_name }}?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    No
+                                                </button>
+                                                <a href="{% url 'delete-book' book.id %}"
+                                                   class="btn btn-danger">Yes</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

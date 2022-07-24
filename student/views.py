@@ -26,7 +26,7 @@ class StudentUpdateView(UpdateView):
     success_url = reverse_lazy('list-of-students')
 
 
-class StudentDetaileView(DetailView):
+class StudentDetailView(DetailView):
     template_name = 'student/detail_student.html'
     model = Student
 
