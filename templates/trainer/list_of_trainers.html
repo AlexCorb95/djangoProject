@@ -21,17 +21,25 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
+                                        {% if perms.trainer.change_trainer %}
                                         <a class="dropdown-item" href="{% url 'update-trainer' trainer.id %}">Update</a>
+                                        {% endif %}
+                                    {% if perms.trainer.detail_t %}
                                         <a class="dropdown-item"
                                            href="{% url 'detail-trainer' trainer.id %}">Details</a>
+                                    {% endif %}
+                                    {% if perms.trainer.delete_trainer %}
                                         <a class="dropdown-item" href="{% url 'delete-trainer' trainer.id %}">Delete</a>
+                                    {% endif %}
                                     </li>
+                                {% if perms.trainer.delete_trainer %}
                                     <li>
                                         <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#trainer_{{ trainer.id }}">
                                             Delete modal
                                         </button>
                                     </li>
+                                {% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -61,4 +69,5 @@
             {% endfor %}
         </div>
     </div>
+
 {% endblock %}

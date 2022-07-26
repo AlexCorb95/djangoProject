@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'student',
     'trainer',
     'book',
+    'userextend',
+    'course',
+    'permission',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR), 'static')
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'

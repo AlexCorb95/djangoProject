@@ -32,16 +32,23 @@
                                         Actions
                                     </button>
                                     <ul class="dropdown-menu">
+                                        {% if perms.book.change_book %}
                                         <li>
                                             <a class="dropdown-item"
                                                href="{% url 'update-book' book.id %}">Update</a></li>
+                                        {% endif %}
+                                    {% if perms.book.detail_b %}
                                         <li><a class="dropdown-item" href="{% url 'detail-book' book.id %}">Details</a>
                                         </li>
+                                    {% endif %}
+                                    {% if perms.book.delete_book %}
+                                        <li>
                                             <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#book_{{ book.id }}">
                                                 Delete modal
                                             </button>
                                         </li>
+                                    {% endif %}
                                     </ul>
                                 </div>
                                 <div class="modal fade" id="book_{{ book.id }}" tabindex="-1"
