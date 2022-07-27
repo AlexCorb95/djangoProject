@@ -15,15 +15,22 @@ class BookCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy('create-book')
     permission_required = 'book.view_book'
 
+    def form_valid(self, form):
+        if form.is_valid() and not form.errors:
+            new_book = form.save(commit=False)
+            new_book.book_name = new_book.book_name.upper()
+            new_book.save()
+            return redirect('create-book')
 
-class BookListView(LoginRequiredMixin,PermissionRequiredMixin, ListView):
+
+class BookListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     template_name = 'book/list_of_books.html'
     model = Book
     context_object_name = 'all_books'
     permission_required = 'book.add_book'
 
 
-class BookUpdateView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
+class BookUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'book/update_book.html'
     model = Book
     form_class = BookForm
@@ -31,13 +38,13 @@ class BookUpdateView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
     permission_required = 'book.change_book'
 
 
-class BookDetailView(LoginRequiredMixin,PermissionRequiredMixin, DetailView):
+class BookDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     template_name = 'book/detail_book.html'
     model = Book
     permission_required = 'book.detail_b'
 
 
-class BookDeleteView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
+class BookDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     template_name = ''
     model = Book
     success_url = reverse_lazy('list-of-books')

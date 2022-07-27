@@ -1,4 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm, \
+    SetPasswordForm
 
 from django.forms import TextInput, EmailInput, DateTimeInput, Select
 
@@ -41,3 +42,35 @@ class AuthenticationLoginForm(AuthenticationForm):
         self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter username'})
         self.fields['password'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Please enter your password'})
+
+
+class PasswordChangeFormExtend(PasswordChangeForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please enter old password'})
+        self.fields['new_password1'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please enter new password'})
+        self.fields['new_password2'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please re-enter new password'})
+
+
+class PasswordResetFormExtend(PasswordResetForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please enter e-mail address'})
+
+
+class SetPasswordFormExtend(SetPasswordForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['new_password1'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please enter password'})
+        self.fields['new_password2'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please re-enter password'})
+
+
