@@ -35,5 +35,6 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(form_class=SetPasswordFormExtend),
          name="password_reset_confirm"),
     path('', include('django.contrib.auth.urls')),
+    path('',include('course.urls')),
 
 ]

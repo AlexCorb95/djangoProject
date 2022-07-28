@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %} List of Courses {% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 gy-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Filter courses</h3>
+                    </div>
+                    <form method="get">
+                        <div class="card-body">
+                            {{ my_filter.form.as_p }}
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" class="btn btn-outline-primary">Search</button>
+                            <a href="{% url 'list-of-courses' %}" class="btn btn-outline-danger">Reset</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% if all_courses %}
+                <div class="col-md-10 gy-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center">List of courses</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Trainer</th>
+                                    <th>Duration</th>
+                                    <th>Starts on</th>
+                                    <th>Ends on</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for course in all_courses %}
+                                    {% for trainer in course.name_of_trainer.all %}
+                                        <tr>
+                                            <td>{{ course.name_of_course }}</td>
+                                            <td>{{ trainer }}</td>
+                                            <td>{{ course.course_duration }}</td>
+                                            <td>{{ course.start_date }}</td>
+                                            <td>{{ course.end_date }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

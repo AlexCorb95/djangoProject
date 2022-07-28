@@ -4,8 +4,10 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
 
+from student.filters import StudentFilter
 from student.forms import StudentForm
 from student.models import Student
+from trainer.models import Trainer
 
 
 class StudentCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -21,6 +23,22 @@ class StudentListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Student
     context_object_name = 'all_students'
     permission_required = 'student.view_student'
+
+    # def get_queryset(self):
+    #     return Student.objects.filter(active=True)
+
+    def get_context_data(self, **kwargs): #getting data from other tables
+        data = super(StudentListView, self).get_context_data(**kwargs)
+
+    #     all_trainers = Trainer.objects.all()
+    #     data['trainers'] = all_trainers
+    #
+        students = Student.objects.all()
+        myFilter = StudentFilter(self.request.GET, queryset=students)
+        data['all_students'] = myFilter.qs
+        data['my_filter'] = myFilter
+        return data
+
 
 
 class StudentUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
