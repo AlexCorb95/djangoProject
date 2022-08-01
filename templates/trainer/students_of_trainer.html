@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} List of students for {{ details_trainer }} {% endblock %}
+{% block content %}
+    {% if students_per_trainer %}
+        {% for student in students_per_trainer %}
+            <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+        {% endfor %}
+    {% else %}
+        <h1>No data available</h1>
+    {% endif %}
+{% endblock %}

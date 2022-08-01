@@ -3,3 +3,9 @@
     text-align: center;
     text-shadow: #016157 2px 2px 6px;
 }
+
+.errorlist {
+
+    list-style-type: none;
+    color: red;
+}

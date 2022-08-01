@@ -21,3 +21,17 @@ class StudentForm(forms.ModelForm):
             'end_date': DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'trainer': Select(attrs={'class': 'form-select'}),
         }
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        students = Student.objects.all()
+        for student in students:
+            if student.first_name == cleaned_data.get('first_name') and student.last_name == cleaned_data.get(
+                    'last_name'):
+                msg = 'Student already exists'
+                self._errors['first_name'] = self.error_class([msg])
+        if cleaned_data.get('end_date') < cleaned_data.get('start_date'):
+            msg = 'Wrong date!'
+            self._errors['end_date'] = self.error_class([msg])
+
+        return cleaned_data

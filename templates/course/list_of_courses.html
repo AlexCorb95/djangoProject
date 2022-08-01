@@ -38,15 +38,15 @@
                                 </thead>
                                 <tbody>
                                 {% for course in all_courses %}
-                                    {% for trainer in course.name_of_trainer.all %}
-                                        <tr>
-                                            <td>{{ course.name_of_course }}</td>
-                                            <td>{{ trainer }}</td>
-                                            <td>{{ course.course_duration }}</td>
-                                            <td>{{ course.start_date }}</td>
-                                            <td>{{ course.end_date }}</td>
-                                        </tr>
-                                    {% endfor %}
+                                    <tr>
+                                        <td>{{ course.name_of_course }}</td>
+                                        <td>{% for trainer in course.name_of_trainer.all %}
+                                            {{ trainer }}{% endfor %}</td>
+                                        <td>{{ course.course_duration }}</td>
+                                        <td>{{ course.start_date }}</td>
+                                        <td>{{ course.end_date }}</td>
+                                    </tr>
+
                                 {% endfor %}
                                 </tbody>
                             </table>

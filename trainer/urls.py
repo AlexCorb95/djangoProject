@@ -8,4 +8,5 @@ urlpatterns = [
     path('detail_trainer/<int:pk>/', views.TrainerDetailView.as_view(), name='detail-trainer'),
     path('delete_trainer/<int:pk>/', views.TrainerDeleteView.as_view(), name='delete-trainer'),
     path('delete_trainer_modal/<int:pk>/', views.delete_trainer, name='delete-trainer-modal'),
+    path('students_of_trainer/<int:pk>/', views.get_students_of_trainer, name='students-of-trainer'),
 ]

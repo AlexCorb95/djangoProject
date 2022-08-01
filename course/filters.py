@@ -26,7 +26,8 @@ class ModuleFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.filters['name_of_trainer'].field.widget.attrs.update({'class': 'form-select'})
+        self.filters['name_of_trainer'].field.widget.attrs.update(
+            {'class': 'form-control'})
 
         self.filters['course_duration'].field.widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Enter course duration'})

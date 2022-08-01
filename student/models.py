@@ -21,3 +21,15 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Credits(models.Model):
+    name_of_exam = models.CharField(max_length=100) # blank=True pentru a nu fi obligatoriu campul
+    no_of_credits = models.IntegerField()
+
+    active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.name_of_exam}'

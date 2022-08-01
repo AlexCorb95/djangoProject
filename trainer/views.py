@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
 
+from student.models import Student
 from trainer.forms import TrainerForm
 from trainer.models import Trainer
 
@@ -49,3 +50,9 @@ class TrainerDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
 def delete_trainer(request, pk):
     Trainer.objects.filter(id=pk).delete()
     return redirect('list-of-trainers')
+
+
+def get_students_of_trainer(request, pk):
+    return render(request, 'trainer/students_of_trainer.html',
+                  {'students_per_trainer': Student.objects.filter(trainer_id=pk),
+                   'details_trainer': Trainer.objects.get(id=pk)})
