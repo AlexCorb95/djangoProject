@@ -9,7 +9,7 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = [
             'book_name', 'author_first_name', 'author_last_name', 'book_year', 'book_type', 'book_rating',
-            'book_quantity', 'book_description'
+            'book_quantity', 'book_description', 'image'
         ]
 
         widgets = {
@@ -22,5 +22,10 @@ class BookForm(forms.ModelForm):
             'book_type': TextInput(attrs={'placeholder': 'Please enter book type', 'class': 'form-control'}),
             'book_rating': TextInput(attrs={'placeholder': 'Please enter book rating', 'class': 'form-control'}),
             'book_quantity': TextInput(attrs={'placeholder': 'Please enter book quantity', 'class': 'form-control'}),
-            'book_description': TextInput(attrs={'placeholder': 'Please enter a short description of the book', 'class': 'form-control'}),
+            'book_description': TextInput(
+                attrs={'placeholder': 'Please enter a short description of the book', 'class': 'form-control'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].widget.attrs['class'] = 'form-control'

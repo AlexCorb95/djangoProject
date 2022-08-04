@@ -9,6 +9,7 @@ class Trainer(models.Model):
     description = models.TextField(max_length=300)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    image = models.ImageField(upload_to='images/', null=True)
 
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

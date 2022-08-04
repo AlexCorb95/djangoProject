@@ -11,6 +11,7 @@ class Book(models.Model):
     book_available = models.BooleanField(default=True)
     book_quantity = models.IntegerField()
     book_description = models.TextField(max_length=300)
+    image = models.ImageField(upload_to='book_images/', null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

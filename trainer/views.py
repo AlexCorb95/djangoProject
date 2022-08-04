@@ -3,10 +3,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from student.models import Student
 from trainer.forms import TrainerForm
 from trainer.models import Trainer
+from trainer.serializers import TrainerSerializer
 
 
 class TrainerCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -56,3 +59,12 @@ def get_students_of_trainer(request, pk):
     return render(request, 'trainer/students_of_trainer.html',
                   {'students_per_trainer': Student.objects.filter(trainer_id=pk),
                    'details_trainer': Trainer.objects.get(id=pk)})
+
+
+
+class TrainerApiView(APIView):
+
+    def get(self,request):
+        queryset = Trainer.objects.all()
+        serializer = TrainerSerializer(queryset, many=True)
+        return Response(serializer.data)

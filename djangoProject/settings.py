@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'userextend',
     'course',
     'permission',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR), 'static')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
@@ -139,4 +142,4 @@ EMAIL_HOST = 'mail.horiascurtu.ro'
 EMAIL_HOST_USER = 'ro28@horiascurtu.ro'
 EMAIL_HOST_PASSWORD = 'Django2022'
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True # TLS - Transport Layer Security - protocoale cryptografice care va permit sa aveti comunicatii sigure
+EMAIL_USE_TLS = True  # TLS - Transport Layer Security - protocoale cryptografice care va permit sa aveti comunicatii sigure

@@ -6,7 +6,7 @@ from trainer.models import Trainer
 class TrainerForm(forms.ModelForm):
     class Meta:
         model = Trainer
-        fields = ['first_name', 'last_name', 'department', 'course', 'description', 'start_date', 'end_date']
+        fields = ['first_name', 'last_name', 'department', 'course', 'description', 'start_date', 'end_date', 'image']
 
         widgets = {
             'first_name': TextInput(attrs={'placeholder': 'Please enter your first name', 'class': 'form-control'}),
@@ -17,3 +17,6 @@ class TrainerForm(forms.ModelForm):
             'start_date': DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'end_date': DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
         }
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.fields['image'].widget.attrs['class'] = 'form-control'
